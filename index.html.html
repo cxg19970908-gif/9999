@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>陈涛专属公告</title>
+<style>
+:root{--bg:#fff7f0;--fg:#2a1a1a;--accent:#e8457c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1016;--fg:#fff1f1;--accent:#ff6b9d}}
+:root[data-theme="dark"]{--bg:#1a1016;--fg:#fff1f1;--accent:#ff6b9d}
+html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--fg);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.center{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;z-index:2;pointer-events:none}
+.pig{font-size:min(28vw,160px);animation:bounce 1s infinite alternate ease-in-out}
+h1{font-size:clamp(28px,8vw,64px);margin:12px 0 0;color:var(--accent);animation:shake .6s infinite}
+@keyframes bounce{to{transform:translateY(-24px) rotate(8deg)}}
+@keyframes shake{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.d{position:fixed;left:100%;white-space:nowrap;font-weight:700;z-index:1;opacity:.85;animation:fly linear forwards}
+@keyframes fly{to{transform:translateX(calc(-100vw - 120%))}}
+button{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(28px + env(safe-area-inset-bottom,0px));z-index:3;font-size:18px;padding:12px 28px;border:0;border-radius:999px;background:var(--accent);color:#fff;cursor:pointer}
+#love{position:fixed;inset:0;z-index:5;display:none;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);text-align:center;padding:24px}
+#love.show{display:flex}
+#love .h{font-size:min(30vw,170px);animation:bounce .8s infinite alternate}
+#love p{font-size:clamp(22px,6vw,40px);color:var(--accent);margin:8px 0}
+</style>
+</head>
+<body>
+<div class="center"><div class="pig">🐷</div><h1>陈涛，你是个猪大傻逼</h1></div>
+<button id="b">我不服</button>
+<div id="love"><div class="h">❤️</div><p>骗你的，其实最爱你了</p><p style="font-size:18px;color:var(--fg)">（刷新可以重新被骂）</p></div>
+<script>
+var words=["陈涛，你是个猪大傻逼","猪大傻逼 陈涛 🐷","陈涛 你好呀 猪大傻逼","全场最佳猪大傻逼：陈涛","🐷🐷🐷 陈涛 🐷🐷🐷","陈涛，说的就是你"];
+var colors=["#e8457c","#f5a623","#4a90e2","#7ed321","#bd10e0","#ff5252"];
+function spawn(){
+  var s=document.createElement("span");
+  s.className="d";
+  s.textContent=words[Math.floor(Math.random()*words.length)];
+  s.style.top=(Math.random()*85+3)+"%";
+  s.style.fontSize=(16+Math.random()*22)+"px";
+  s.style.color=colors[Math.floor(Math.random()*colors.length)];
+  s.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(s);
+  setTimeout(function(){s.remove()},13000);
+}
+for(var i=0;i<14;i++){setTimeout(spawn,i*180)}
+setInterval(spawn,350);
+document.getElementById("b").onclick=function(){document.getElementById("love").classList.add("show")};
+</script>
+</body>
+</html>
